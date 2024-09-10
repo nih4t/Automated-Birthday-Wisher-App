@@ -2,10 +2,10 @@ import smtplib
 import datetime as dt
 import pandas as pd
 
-SENDER = "Your Name"
-SENDER_EMAIL = "tstccnt0101@gmail.com"
+SENDER = "YOUR NAME"
+SENDER_EMAIL = "YOUR EMAIL"
 # Must use app password for safety
-PASSWORD = "zwki uznn hgen xvyi"
+PASSWORD = "APP PASSWORD"
 LETTER_TEMPLATE = "letter_1.txt"
 
 now = dt.datetime.now()
@@ -22,9 +22,7 @@ else:
 
         with open(f"./letter_templates/{LETTER_TEMPLATE}") as file:
             letter = file.read()
-
-        updated_letter = letter.replace("[NAME]", name).replace("[SENDER]", SENDER)
-
+            letter.replace("[NAME]", name).replace("[SENDER]", SENDER)
 
 
         with smtplib.SMTP("smtp.gmail.com") as connection:
@@ -32,7 +30,7 @@ else:
             connection.login(user=SENDER_EMAIL, password=PASSWORD)
             connection.sendmail(from_addr=SENDER_EMAIL,
                                 to_addrs=receiver_email,
-                                msg=f"Subject: Happy Birthday!\n\n{updated_letter}")
+                                msg=f"Subject: Happy Birthday!\n\n{letter}")
 
 
 
